@@ -1,0 +1,15 @@
+# System-specific files
+*.swp
+*.swo
+*.swn
+*.tmp
+*.bak
+
+# Temporary files created by Neovim or other editors
+*~
+
+# Lock or cache files
+lazy-lock.json
+
+# Backup or session files
+session.vim
