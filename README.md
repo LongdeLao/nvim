@@ -2,7 +2,7 @@
 ---
 
 ## Custom Commands
-### `<leader-cr>` - Run your Rust project
+ `<leader-cr>` - Run your Rust project
 
 
 ## Clone this Repository
