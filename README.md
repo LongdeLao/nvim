@@ -2,7 +2,7 @@
 ---
 
 ## Custom Commands
- `<leader-cr>` - Run your Rust project
+ `<leader-cr>` - splits into a new terminal window and runs 'cargo run'
 
 
 ## Clone this Repository
