@@ -1,5 +1,4 @@
 vim.g.autosave = true
-
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   group = vim.api.nvim_create_augroup("Autosave", {}),
   nested = true,
