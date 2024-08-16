@@ -38,3 +38,6 @@ require("custom.commands")
 vim.schedule(function()
   require "mappings"
 end)
+vim.g.loaded_python3_provider = 1 
+vim.cmd("runtime python3_provider")
+
