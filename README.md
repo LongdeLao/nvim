@@ -1,6 +1,6 @@
 # My Personal Neovim Configuration for Rust
 <div>
-   <img src="assets/Configuration.png" alt="Image" width="300" style="display: inline-block; margin-right: 10px;"/>
+   <img src="assets/Configuration.png" alt="Image" style="display: inline-block; margin-right: 10px;"/>
 </div>
 
 ## Custom Commands
