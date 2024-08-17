@@ -4,7 +4,7 @@ require("nvchad.configs.lspconfig").defaults()
 local lspconfig = require "lspconfig"
 
 -- EXAMPLE
-local servers = { "html", "cssls", "pyright" }
+local servers = { "html", "cssls", "pyright",}
 local util = require "lspconfig.util"
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -30,6 +30,14 @@ lspconfig.rust_analyzer.setup {
       },
     },
   },
+}
+
+lspconfig.clangd.setup {
+  on_attach = nvlsp.on_attach,
+  capabilities = nvlsp.capabilities,
+  cmd = { "clangd", "--background-index" },  -- Custom command with additional options
+  filetypes = { "c", "cpp", "objc", "objcpp" },
+  -- root_dir is not specified, so clangd will use the current working directory
 }
 
 -- configuring single server, example: typescript
