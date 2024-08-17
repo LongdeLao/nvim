@@ -6,8 +6,16 @@ local map = vim.keymap.set
 
 
 
+-- Code Runner 
+map("n", "<leader>cr", "<cmd>RunCargo<CR>", { desc = "Run Cargo " })
+map("n", "g++","<cmd>RunCpp<CR>", {desc = "Run C++"})
+map("n", "gcc","<cmd>RunC<CR>", {desc = "Run C"})
 
-map("n", "<leader>cr", "<cmd>RunCargo<CR>", { desc = "Run Cargo in terminal" })
+
+
+
+
+--defaults 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 
