@@ -10,7 +10,7 @@ local map = vim.keymap.set
 map("n", "<leader>cr", "<cmd>RunCargo<CR>", { desc = "Run Cargo " })
 map("n", "g++","<cmd>RunCpp<CR>", {desc = "Run C++"})
 map("n", "gcc","<cmd>RunC<CR>", {desc = "Run C"})
-
+map("n", "<leader>sw", "<cmd>RunSwift<CR>", {desc = "Run Swift"})
 
 
 

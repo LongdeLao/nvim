@@ -45,3 +45,20 @@ vim.api.nvim_create_user_command('RunC', function()
       clear_cmd = false
   }
 end, {})
+
+--swift 
+vim.api.nvim_create_user_command('RunSwift', function()
+  local fullFileName = vim.fn.expand('%:p')  -- Get the full path of the current file
+
+  -- Command to compile and run the Swift file
+  local cmd = string.format("swift %s", fullFileName)
+
+  -- Run the command in a terminal split
+  require("nvchad.term").runner {
+    pos = "sp",        -- Open in a horizontal split
+    cmd = cmd,         -- Command to run
+    id = "swift_runner", -- Identifier for the terminal
+    clear_cmd = false  -- Do not clear the command after execution
+  }
+end, {})
+
