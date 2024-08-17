@@ -2,7 +2,10 @@
 
 
 ## Custom Commands
- `<leader-cr>` - splits into a new terminal window and runs `cargo run`
+ `<leader-cr>` - runs rust
+`<leader-sw>` - runs swift 
+`g++` compiles & executes c++ file 
+`gcc` compiles & executes swift file 
 
 
 ## Clone this Repository
