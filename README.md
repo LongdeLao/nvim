@@ -1,8 +1,13 @@
 # My Personal Neovim Configuration for Rust
-
+<div>
+   <img src="assets/Configuration" alt="Image" width="300" style="display: inline-block; margin-right: 10px;"/>
+</div>
 
 ## Custom Commands
- `<leader-cr>` - splits into a new terminal window and runs `cargo run`
+ - `<leader-cr>` - runs rust 
+ - `<leader-sw>` - runs swift 
+ - `g++` compiles & executes c++ file 
+ - `gcc` compiles & executes swift file 
 
 
 ## Clone this Repository
