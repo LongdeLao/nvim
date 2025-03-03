@@ -17,8 +17,15 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "vim", "lua", "vimdoc", "html", "css","cpp","python" },
+      ensure_installed = { "vim", "lua", "vimdoc", "html", "css","cpp"},
     },
+    indent = {enable = true}
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+        enabled = false,  -- Completely disable indent guides
+    }
   },
 
   {
