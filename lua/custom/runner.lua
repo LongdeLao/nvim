@@ -35,3 +35,21 @@ vim.api.nvim_create_user_command('CompileLaTeX', function()
   }
 end, {})
 
+
+
+vim.api.nvim_create_user_command('RunPython', function()
+  -- Get the full file path of the current file
+  local fullFileName = vim.fn.expand('%:p')  -- Full file path of the current file
+
+  -- Command to run the Python file
+  local cmd = string.format("python3 \"%s\"", fullFileName)
+
+  -- Run the command in a split terminal
+  require("nvchad.term").runner {
+    pos = "sp",          -- Position: "sp" for split
+    cmd = cmd,           -- The command to run
+    id = "python_runner", -- Unique ID for the terminal
+    clear_cmd = false    -- Do not clear the terminal before running
+  }
+end, {})
+

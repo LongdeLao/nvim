@@ -9,6 +9,6 @@ map("i", "jk", "<ESC>")
 
 -- Code Runner
 map('n', 'g++', ':RunCpp<CR>', { desc = " Compile Run C++ File"})
-
+map('n','py', ':RunPython<CR>', {desc = "Compile Run Python File"})
 map('n', '<leader>lc', ':CompileLaTeX<CR>', { desc = "Compile LaTeX" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
