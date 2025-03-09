@@ -17,7 +17,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "vim", "lua", "vimdoc", "html", "css","cpp"},
+      ensure_installed = { "vim","latex", "lua", "vimdoc", "html", "css","cpp"},
     },
     indent = {enable = true}
   },
@@ -27,7 +27,6 @@ return {
         enabled = false,  -- Completely disable indent guides
     }
   },
-
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
@@ -35,9 +34,13 @@ return {
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
-    opts = {},
+    opts = {
+           latex = {enabled =true }
+        },
     lazy = false,
   },
+
+
   -- Devicons plugin for file icons
   {
     "nvim-tree/nvim-web-devicons",
@@ -49,5 +52,24 @@ return {
     lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
   },
+   -- lazy.nvim
+   {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+        lazy = false,
+        opts = {
+            image = {
+                math = {enabled = true},
+                doc = {inline = false}
+                -- your image configuration comes here
+            -- or leave it empty to use the default settings
+            -- refer to the configuration section below
+            },
+            scroll = {
+
+            },
+
+        }
+    },
 }
 

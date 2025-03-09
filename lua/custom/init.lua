@@ -57,6 +57,7 @@ local plugins = {
   },
 }
 
-
+require "custom.autosave"
+require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/custom/snippets"})
 require "configs.runner"
 return plugins
