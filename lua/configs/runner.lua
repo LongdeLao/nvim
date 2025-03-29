@@ -53,3 +53,18 @@ vim.api.nvim_create_user_command('RunPython', function()
   }
 end, {})
 
+
+
+vim.api.nvim_create_user_command('RunRust', function()
+  -- Command to run the Rust project using cargo run
+  local cmd = "cargo run"
+
+  -- Run the command in a split terminal
+  require("nvchad.term").runner {
+    pos = "sp",          -- Position: "sp" for split
+    cmd = cmd,           -- The command to run
+    id = "rust_runner",  -- Unique ID for the terminal
+    clear_cmd = false    -- Do not clear the terminal before running
+  }
+end, {})
+
