@@ -5,6 +5,13 @@ return {
     opts = require "configs.conform",
   },
 
+  -- LuaSnip for snippets
+  {
+    "L3MON4D3/LuaSnip",
+    lazy = false,
+    version = "v2.*",
+  },
+
   -- LSP config
   {
     "neovim/nvim-lspconfig",
@@ -17,9 +24,9 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "vim","latex", "lua", "vimdoc", "html", "css","cpp"},
+      ensure_installed = { "vim","latex", "lua", "vimdoc", "html", "css","cpp", "ocaml"},
+      indent = {enable = true}
     },
-    indent = {enable = true}
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -71,5 +78,14 @@ return {
 
         }
     },
+    {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    lazy = false,
+    ft = { "markdown" },
+    config = function()
+      vim.g.mkdp_auto_start = 1 -- Start preview automatically
+    end,
+  }
 }
 
