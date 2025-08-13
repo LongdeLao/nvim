@@ -85,3 +85,31 @@ vim.api.nvim_create_user_command('RunOCaml', function()
   }
 end, {})
 
+
+-- Auto Executor - detects file type and runs appropriate command
+vim.api.nvim_create_user_command('AutoExecute', function()
+  local filetype = vim.bo.filetype
+  local filename = vim.fn.expand('%:t')
+  local extension = vim.fn.expand('%:e')
+  
+  -- Check if file exists and is not empty
+  if filename == '' then
+    vim.notify('No file is currently open', vim.log.levels.WARN)
+    return
+  end
+  
+  -- Auto-detect and execute based on file type
+  if filetype == 'cpp' or extension == 'cpp' or extension == 'cc' or extension == 'cxx' then
+    vim.cmd('RunCpp')
+  elseif filetype == 'python' or extension == 'py' then
+    vim.cmd('RunPython')
+  elseif filetype == 'rust' or extension == 'rs' then
+    vim.cmd('RunRust')
+  elseif filetype == 'tex' or extension == 'tex' then
+    vim.cmd('CompileLaTeX')
+  elseif filetype == 'ocaml' or extension == 'ml' or extension == 'mli' then
+    vim.cmd('RunOCaml')
+  else
+    vim.notify('No executor configured for file type: ' .. (filetype ~= '' and filetype or extension), vim.log.levels.INFO)
+  end
+end, { desc = "Auto-execute based on file type" })

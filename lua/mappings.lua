@@ -13,4 +13,7 @@ map('n','py', ':RunPython<CR>', {desc = "Compile Run Python File"})
 map('n', 'rc', ':RunRust<CR>', {desc = "Compile Run Rust File"})
 map('n', '<leader>lc', ':CompileLaTeX<CR>', { desc = "Compile LaTeX" })
 map('n', 'ocm', ':RunOCaml<CR>', {desc = "Run OCaml File"})
+
+-- Auto Executor - Space+r to automatically detect and run
+map('n', '<leader>r', ':AutoExecute<CR>', { desc = "Auto-execute based on file type" })
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
