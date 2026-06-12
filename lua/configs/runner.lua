@@ -85,6 +85,25 @@ vim.api.nvim_create_user_command('RunOCaml', function()
   }
 end, {})
 
+vim.api.nvim_create_user_command('RunJava', function()
+  local fullFileName = vim.fn.expand('%:p')
+  local dir = vim.fn.expand('%:p:h')
+  local className = vim.fn.expand('%:t:r')
+
+  local cmd = string.format(
+    "cd \"%s\" && javac \"%s\" && java \"%s\"",
+    dir,
+    fullFileName,
+    className
+  )
+
+  require("nvchad.term").runner {
+    pos = "sp",
+    cmd = cmd,
+    id = "java_runner",
+    clear_cmd = false
+  }
+end, {})
 
 -- Auto Executor - detects file type and runs appropriate command
 vim.api.nvim_create_user_command('AutoExecute', function()
@@ -105,10 +124,8 @@ vim.api.nvim_create_user_command('AutoExecute', function()
     vim.cmd('RunPython')
   elseif filetype == 'rust' or extension == 'rs' then
     vim.cmd('RunRust')
-  elseif filetype == 'tex' or extension == 'tex' then
-    vim.cmd('CompileLaTeX')
-  elseif filetype == 'ocaml' or extension == 'ml' or extension == 'mli' then
-    vim.cmd('RunOCaml')
+  elseif filetype == 'java' or extension == 'java' then
+    vim.cmd('RunJava')
   else
     vim.notify('No executor configured for file type: ' .. (filetype ~= '' and filetype or extension), vim.log.levels.INFO)
   end
