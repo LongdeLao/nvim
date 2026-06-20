@@ -1,4 +1,58 @@
 return {
+  -- Mason manages external LSPs/formatters and puts them on Neovim's PATH.
+  {
+    "mason-org/mason.nvim",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      opts.ensure_installed = {
+        -- LSPs
+        "tailwindcss-language-server",
+        "typescript-language-server",
+        "gopls",
+        "rust-analyzer",
+        "clangd",
+        "jdtls",
+        "pyright",
+        "html-lsp",
+        "css-lsp",
+
+        -- Formatters
+        "prettier",
+        "black",
+        "isort",
+        "gofumpt",
+        "goimports",
+        "clang-format",
+        "google-java-format",
+        "stylua",
+      }
+
+      return opts
+    end,
+    config = function(_, opts)
+      require("mason").setup(opts)
+      if vim.env.NVIM_SKIP_MASON_AUTO_INSTALL == "1" then
+        return
+      end
+
+      local registry = require "mason-registry"
+      local function install_missing()
+        for _, tool in ipairs(opts.ensure_installed or {}) do
+          local ok, package = pcall(registry.get_package, tool)
+          if ok and not package:is_installed() then
+            package:install()
+          end
+        end
+      end
+
+      if registry.refresh then
+        registry.refresh(install_missing)
+      else
+        install_missing()
+      end
+    end,
+  },
+
   -- Conform plugin for formatting
   {
     "stevearc/conform.nvim",
@@ -24,8 +78,42 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = { "vim","latex", "lua", "vimdoc", "html", "css","cpp", "ocaml"},
+      ensure_installed = {
+        "bash",
+        "c",
+        "cpp",
+        "css",
+        "go",
+        "gomod",
+        "gosum",
+        "html",
+        "java",
+        "javascript",
+        "json",
+        "latex",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "ocaml",
+        "python",
+        "rust",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+      },
       indent = {enable = true}
+    },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {
+      opts = {
+        enable_close = true,
+        enable_rename = true,
+        enable_close_on_slash = true,
+      },
     },
   },
   {
@@ -42,9 +130,10 @@ return {
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {
-           latex = {enabled =true }
-        },
-    lazy = false,
+      file_types = { "markdown" },
+      latex = { enabled = true },
+    },
+    ft = { "markdown" },
   },
 
 
@@ -66,7 +155,8 @@ return {
         lazy = false,
         opts = {
             image = {
-                math = {enabled = true},
+                enabled = false,
+                math = {enabled = false},
                 doc = {inline = false}
                 -- your image configuration comes here
             -- or leave it empty to use the default settings
@@ -88,4 +178,3 @@ return {
     end,
   }
 }
-

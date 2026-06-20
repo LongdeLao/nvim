@@ -41,7 +41,6 @@ return {
         "optwin",
         "compiler",
         "bugreport",
-        "ftplugin",
       },
     },
   },

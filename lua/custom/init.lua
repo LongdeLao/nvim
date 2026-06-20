@@ -60,4 +60,49 @@ local plugins = {
 require "custom.autosave"
 require("luasnip.loaders.from_lua").load({paths = "~/.config/nvim/lua/custom/snippets"})
 require "configs.runner"
+
+-- Guard markdown code-fence injections on Neovim 0.12, where the capture can be wrapped.
+local function patch_markdown_info_string_directive()
+  local ok, query = pcall(require, "vim.treesitter.query")
+  if not ok then
+    return
+  end
+
+  query.add_directive("set-lang-from-info-string!", function(match, _, bufnr, pred, metadata)
+    local node = match[pred[2]]
+    if type(node) == "table" then
+      node = node[1]
+    end
+    if not node or type(node.range) ~= "function" then
+      return
+    end
+
+    local ok_text, lang = pcall(vim.treesitter.get_node_text, node, bufnr)
+    if not ok_text or not lang or lang == "" then
+      return
+    end
+
+    lang = lang:lower()
+    local aliases = {
+      ex = "elixir",
+      pl = "perl",
+      sh = "bash",
+      ts = "typescript",
+    }
+    metadata["injection.language"] = vim.filetype.match({ filename = "a." .. lang })
+      or aliases[lang]
+      or lang
+  end, { force = true, all = false })
+end
+
+vim.api.nvim_create_autocmd("User", {
+  pattern = "LazyLoad",
+  callback = function(args)
+    if args.data == "nvim-treesitter" then
+      patch_markdown_info_string_directive()
+    end
+  end,
+})
+
+patch_markdown_info_string_directive()
 return plugins

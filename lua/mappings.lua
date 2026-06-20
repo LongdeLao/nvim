@@ -6,6 +6,8 @@ local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("x", "d", '"_d', { desc = "Delete selection without yanking" })
 
 -- Code Runner
 map('n', 'rc', ':RunCpp<CR>', { desc = " Compile Run C++ File"})
